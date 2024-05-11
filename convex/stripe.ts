@@ -11,7 +11,7 @@ export const addPrice = internalAction({
     },
     handler: async (ctx, args) => {
         const stripe = new Stripe(process.env.NEXT_STRIPE_SECRET_KEY!, {
-            apiVersion: "2023-10-16",
+            apiVersion: "2024-04-10",
         });
 
         const price = await stripe.prices.create({
@@ -32,7 +32,7 @@ export const pay = action({
     handler: async (ctx, args) => {
 
         const stripe = new Stripe(process.env.NEXT_STRIPE_SECRET_KEY!, {
-            apiVersion: "2023-10-16",
+            apiVersion: "2024-04-10",
         });
 
         const domain = process.env.NEXT_PUBLIC_HOSTING_URL;
@@ -84,7 +84,7 @@ export const setStripeAccountSetupComplete = action({
     args: { userId: v.id("users") },
     handler: async (ctx, args) => {
         const stripe = new Stripe(process.env.NEXT_STRIPE_SECRET_KEY!, {
-            apiVersion: "2023-10-16",
+            apiVersion: "2024-04-10",
         });
 
         const user = await ctx.runQuery(api.users.get, { id: args.userId });

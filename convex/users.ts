@@ -96,7 +96,7 @@ export const createStripe = action({
             return;
         }
         const stripe = new Stripe(process.env.NEXT_STRIPE_SECRET_KEY!, {
-            apiVersion: "2023-10-16",
+            apiVersion: "2024-04-10",
         });
 
         let accountId: string | null = await ctx.runQuery(internal.users.getStripeAccountId, { userId: user._id });
