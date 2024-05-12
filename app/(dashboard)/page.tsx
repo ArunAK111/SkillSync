@@ -16,16 +16,7 @@ interface DashboardProps {
     };
 };
 
-const Dashboard = ({
-    searchParams
-}: DashboardProps) => {
-    const store = useMutation(api.users.store);
-    useEffect(() => {
-        const storeUser = async () => {
-            await store({});
-        }
-        storeUser();
-    }, [store])
+const Dashboard = ({ searchParams }: DashboardProps) => {
     return (
         <GigList
             query={searchParams}
