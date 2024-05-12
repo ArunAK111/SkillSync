@@ -1,11 +1,17 @@
 import { v } from "convex/values";
-import { action, internalMutation, internalQuery, mutation, query } from "./_generated/server";
+import { action, internalMutation, internalQuery, mutation, query, } from "./_generated/server";
+import { useConvexAuth, useMutation } from "convex/react";
 import Stripe from "stripe";
 import { api, internal } from "./_generated/api";
 
 export const store = mutation({
     args: {},
     handler: async (ctx) => {
+        const { isAuthenticated } = useConvexAuth(); // Check authentication
+        if (!isAuthenticated) {
+            throw new Error("Authentication required to store user");
+        }
+
         const identity = await ctx.auth.getUserIdentity();
         if (!identity) {
             throw new Error("Called storeUser without authentication present");
